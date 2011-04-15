@@ -1,26 +1,29 @@
-var smtp = require(__dirname + "/../lib/smtp"),
-	client = new (smtp.Client)();
+var smtp = require(__dirname + "/../lib/smtp"), status;
 
-client.connect("localhost");
-client.on("connect", function () {
-	client.mailFrom("root@localhost");
-});
-client.on("mailFrom", function () {
-	client.rcptTo("root@localhost");
-});
-client.on("rcptTo", function () {
-	client.data(
-		"From: \"Root\" <root@localhost>\r\n" +
-		"Date: " + (new Date()) + "\r\n" +
-		"Subject: hello world\r\n" +
-		"\r\n" +
-		"Hello world\r\n" +
-		".\r\n");
-});
-client.on("data", function () {
-	client.close();
-});
-client.on("close", function () {
-	console.log("done!");
-	process.exit(0);
+status = smtp.sendmail({
+	"host"		: "localhost",
+	"from"		: "root@localhost",
+	"to"		: [ "root@localhost" ],
+	"auth"		: [ "root", "password" ],
+	"content"	: {
+		"from"			: "Diogo",
+		"to"			: "Diogo",
+		"subject"		: "hello world subject",
+		"content-type"	: "multipart/alternative",
+		"content"		: [{
+			"content-type"	: "text/html",
+			"content"		: "Hello <strong>world</strong> :)"
+		}, {
+			"content-type"	: "text/plain",
+			"content"		: "Hello world :)"
+		}]
+	},
+	"success"	: function () {
+		console.log("sent!");
+		process.exit(0);
+	},
+	"failure"	: function (err) {
+		console.log("Error(%d): %s", err.code, err.message);
+		process.exit(1);
+	}
 });
