@@ -7,7 +7,12 @@ or the `sendmail` function. The later is recomended.
     	"host"		: "mail.example.com",
     	"from"		: "john@example.com",
     	"to"		: [ "jane@example.com", "doe@example.com" ],
-    	"content"	: "Hello Jane!", // you can send a structure
+    	"auth"		: [ "john", "secret" ],
+    	"content"	: {
+    		"subject"		: "Hello Jane!",
+    		"content-type"	: "text/html",
+    		"content"		: "Hello <strong>Jane</strong>!"
+    	},
     	"success"	: function () {
     		console.log("Sent!");
     	},
