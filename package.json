@@ -1,0 +1,31 @@
+{
+	"name"			: "smtpc",
+	"version"		: "0.1.0",
+	"description"	: "Simple SMTP client for NodeJS",
+	"keywords"		: [
+		"smtp",
+		"client",
+		"mail"
+	],
+	"author"		: {
+		"name"	: "Diogo Resende",
+		"email"	: "dresende@thinkdigital.pt",
+		"url"	: "http://www.thinkdigital.pt"
+	},
+	"engines"		: {
+		"node"	: ">= 0.4.0"
+	},
+	"repository"	: {
+		"type"	: "git",
+		"url"	: "http://github.com/dresende/node-smtp.git"
+	},
+	"directories"	: {
+		"lib"		: "./lib",
+		"example"	: "./example"
+	},
+	"main"			: "./lib/smtp",
+	"licenses"		: [{
+		"type"	: "MIT",
+		"url"	: "http://github.com/dresende/node-smtp/raw/master/LICENSE"
+	}]
+}
