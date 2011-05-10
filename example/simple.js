@@ -1,14 +1,14 @@
 var smtp = require(__dirname + "/../lib/smtp"), status;
 
 status = smtp.sendmail({
-	"host"		: "localhost",
-	"from"		: "root@localhost",
-	"to"		: [ "root@localhost" ],
+	"host"		: "mail.example.com",
 	"auth"		: [ "root", "password" ],
+	"from"		: "root@example.com",
+	"to"		: [ "test1@example.com", "test2@example.com" ],
 	"content"	: {
-		"from"			: "Diogo",
-		"to"			: "Diogo",
-		"subject"		: "hello world subject",
+		"from"			: "Root",
+		"to"			: "Test People",
+		"subject"		: "Hello!",
 		"content-type"	: "multipart/alternative",
 		"content"		: [{
 			"content-type"	: "text/html",
@@ -23,6 +23,10 @@ status = smtp.sendmail({
 		process.exit(0);
 	},
 	"failure"	: function (err) {
+		if (err.code) {
+			console.log("Error(%s): %s", err.email, err.message);
+			return;
+		}
 		console.log("Error(%d): %s", err.code, err.message);
 		process.exit(1);
 	}
