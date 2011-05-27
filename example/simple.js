@@ -15,7 +15,7 @@ status = smtp.sendmail({
 			"content"		: "Hello <strong>world</strong> :)"
 		}, {
 			"content-type"	: "text/plain",
-			"content"		: "Hello world :)"
+			"content"		: "Hello world :) with some weird\nchars çäéũ§@"
 		}]
 	},
 	"success"	: function () {
