@@ -1,9 +1,17 @@
-## SMTP Client in Node
+## Installation
+
+    npm install smtpc
+
+## Usage (require..)
+
+    var smtpc = require("smtpc");
+
+## Send an e-mail
 
 Connect to an SMTP server and send e-mails, authenticated or not. You can use the `Client` class
 or the `sendmail` function. The later is recomended.
 
-    sendmail({
+    smtpc.sendmail({
     	"host"		: "mail.example.com",
     	"from"		: "john@example.com",
     	"to"		: [ "jane@example.com", "doe@example.com" ],
